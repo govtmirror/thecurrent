@@ -1,0 +1,90 @@
+<?xml version ='1.0' encoding ='UTF-8' ?> 
+<definitions name='ValidateUserService' 
+  targetNamespace='http://example.org/ValidateUserService' 
+  xmlns:tns=' http://example.org/ValidateUserService ' 
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema' 
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/' 
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+  xmlns='http://schemas.xmlsoap.org/wsdl/'> 
+
+<message name='getUserIDRequest'>
+  <part name='userdomain' type='xsd:string'/>
+</message> 
+<message name='getUserIDResponse'> 
+  <part name='Result' type='xsd:float'/> 
+</message> 
+<message name='getUserImageRequest'>
+  <part name='userdomain' type='xsd:string'/>
+</message> 
+<message name='getUserImageResponse'> 
+  <part name='Result' type='xsd:string'/> 
+</message>
+<message name='getUserFullNameRequest'>
+  <part name='userdomain' type='xsd:string'/>
+</message> 
+<message name='getUserFullNameResponse'> 
+  <part name='Result' type='xsd:float'/> 
+</message>  
+
+<portType name='ValidateUserPortType'> 
+  <operation name='getUserID'> 
+    <input message='tns:getUserIDRequest'/> 
+    <output message='tns:getUserIDResponse'/> 
+  </operation>
+   <operation name='getUserImage'> 
+    <input message='tns:getUserImageRequest'/> 
+    <output message='tns:getUserImageResponse'/> 
+  </operation> 
+   <operation name='getUserFullName'> 
+    <input message='tns:getUserFullNameRequest'/> 
+    <output message='tns:getUserFullNameResponse'/> 
+  </operation> 
+</portType> 
+
+<binding name='ValidateUserBinding' type='tns:ValidateUserPortType'> 
+  <soap:binding style='rpc' 
+    transport='http://schemas.xmlsoap.org/soap/http'/> 
+  <operation name='getUserID'> 
+    <soap:operation soapAction='urn:localhost-ValidateUserService#getUserID'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation>
+  <operation name='getUserImage'> 
+    <soap:operation soapAction='urn:localhost-ValidateUserService#getUserImage'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation>  
+  <operation name='getUserFullName'> 
+    <soap:operation soapAction='urn:localhost-ValidateUserService#getUserFullName'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-ValidateUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation> 
+</binding> 
+
+
+<service name='ValidateUserService'> 
+  <port name='ValidateUserPort' binding='ValidateUserBinding'> 
+    <soap:address location='http://corridor.state.gov/corridorservice/validateUserService.php'/> 
+  </port> 
+</service>
+</definitions>
+

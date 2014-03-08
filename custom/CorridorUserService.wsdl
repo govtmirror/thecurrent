@@ -1,0 +1,42 @@
+<?xml version ='1.0' encoding ='UTF-8' ?> 
+<definitions name='CorridorUserService' 
+  targetNamespace='http://example.org/CorridorUserService' 
+  xmlns:tns='http://example.org/CorridorUserService' 
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema' 
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/' 
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+  xmlns='http://schemas.xmlsoap.org/wsdl/'> 
+<message name='getUserInfoRequest'>   
+  <part name='idString' type='xsd:string'/>   
+</message> 
+<message name='getUserInfoResponse'> 
+  <part name='Result' type='xsd:string'/> 
+</message> 
+<portType name='CorridorUserServicePortType'> 
+  <operation name='getUserInfo'> 
+    <input message='tns:getUserInfoRequest'/> 
+    <output message='tns:getUserInfoResponse'/> 
+  </operation> 
+</portType> 
+<binding name='CorridorUserServiceBinding' type='tns:CorridorUserServicePortType'> 
+  <soap:binding style='rpc' 
+    transport='http://schemas.xmlsoap.org/soap/http'/> 
+  <operation name='getUserInfo'> 
+    <soap:operation soapAction='urn:localhost-CorridorUserService#getUserInfo'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-CorridorUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-CorridorUserService' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation> 
+</binding> 
+<service name='CorridorUserService'> 
+  <port name='CorridorUserServicePort' binding='CorridorUserServiceBinding'> 
+    <soap:address location='http://cfcdashboard.state.gov/corridorservice/CorridorUserService.php'/> 
+  </port> 
+</service>
+</definitions>

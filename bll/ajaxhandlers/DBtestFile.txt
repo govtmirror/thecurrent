@@ -1,0 +1,8 @@
+object(DB_GoogleRSSJSDirectWidget)#10 (3) {
+  ["link":protected]=>
+  string(41) "http://rss.cnn.com/rss/cnn_topstories.rss"
+  ["description":protected]=>
+  string(11) "describe me"
+  ["title":"TC_Widget":private]=>
+  string(8) "CNN News"
+}

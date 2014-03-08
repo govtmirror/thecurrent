@@ -1,0 +1,446 @@
+
+<applicant>
+    <applicantId>NEEDED</applicantId> 
+    <createDate></createDate> 
+    <updateDate></updateDate> 
+    <personalInfo> 
+        <firstName>NEEDED</firstName> 
+        <middleInitial /> 
+        <lastName>NEEDED</lastName> 
+        <dateOfBirth></dateOfBirth> 
+        <isUSCitizen>NEEDED</isUSCitizen> 
+        <SSN></SSN> 
+        <gender> 
+        NEEDED
+        </gender> 
+    </personalInfo> 
+    <contactInfo> 
+        <streetAddressLine1>NEEDED</streetAddressLine1> 
+        <streetAddressLine2>NEEDED</streetAddressLine2> 
+        <streetAddressLine3>NEEDED</streetAddressLine3> 
+        <city>NEEDED</city> 
+        <stateCode>NEEDED</stateCode> 
+        <stateName>NEEDED</stateName> 
+        <zip>NEEDED</zip> 
+        <zipplus4 /> 
+        <countryCode>NEEDED</countryCode> 
+        <countryName>NEEDED</countryName> 
+        <emailAddress>NEEDED</emailAddress> 
+        <phone>NEEDED</phone> 
+        <alternativePhone>NEEDED</alternativePhone> 
+    </contactInfo> 
+    <resume>NEEDED</resume> 
+    <veteranPreference></veteranPreference> 
+    <veteranPreferenceName></veteranPreferenceName> 
+    <documentationReceived></documentationReceived> 
+    <notificationPref /> 
+    <notificationPrefName /> 
+    <seriesList> 
+        <series> 
+            <seriesCode></seriesCode> 
+            <seriesDesc></seriesDesc> 
+        </series> 
+    </seriesList> 
+    <locationPreferences> 
+        <locationPreference> 
+            <code></code> 
+            <preference></preference> 
+            <description></description> 
+        </locationPreference> 
+    </locationPreferences> 
+    <responsesList> 
+        <responsesCategory> 
+            <category>RNO</category> 
+            <responses> 
+                <response> 
+                    <questionId>1</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>M - Male</answer> 
+                    <score /> 
+                </response> 
+                <response> 
+                    <questionId>2</questionId> 
+                    <choiceId>6</choiceId> 
+                    <answer>White</answer> 
+                    <score /> 
+                </response> 
+                <response> 
+                    <questionId>3</questionId> 
+                    <choiceId>8</choiceId> 
+                    <answer>Not Applicable</answer> 
+                    <score /> 
+                </response> 
+                <response> 
+                    <questionId>4</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score /> 
+                </response> 
+            </responses> 
+        </responsesCategory> 
+        <responsesCategory> 
+            <category>ELIGIBILITY</category> 
+            <responses> 
+                <response> 
+                    <questionId>1</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>3</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>4</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>6</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>Not applicable</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>9</questionId> 
+                    <choiceId>9</choiceId> 
+                    <answer>Not applicable</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>11</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>12</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>Not Applicable</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>21</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>22</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>23</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>Not Applicable</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>24</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>Not Applicable</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>26</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>28</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>31</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>33</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>39</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>40</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>42</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>No</answer> 
+                    <score>0</score> 
+                </response> 
+            </responses> 
+        </responsesCategory> 
+        <responsesCategory> 
+            <category>ALLGRADES</category> 
+            <responses> 
+                <response> 
+                    <questionId>162</questionId> 
+                    <choiceId /> 
+                    <answer>09/01/2008</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>163</questionId> 
+                    <choiceId /> 
+                    <answer>05/15/2011</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>174</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>273</questionId> 
+                    <choiceId>11</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>274</questionId> 
+                    <choiceId>4</choiceId> 
+                    <answer>3 - Minimum professional proficiency</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>275</questionId> 
+                    <choiceId>4</choiceId> 
+                    <answer>3 - Minimum professional proficiency</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>277</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>0 - No practical proficiency</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>309</questionId> 
+                    <choiceId /> 
+                    <answer>3.05</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>454</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>739</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>7487</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>11361</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>15336</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>10000001</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>10000002</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>10000003</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>10000007</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>10000008</questionId> 
+                    <choiceId /> 
+                    <answer>NA</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005087</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005088</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005088</questionId> 
+                    <choiceId>4</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005088</questionId> 
+                    <choiceId>5</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005089</questionId> 
+                    <choiceId /> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005091</questionId> 
+                    <choiceId>72</choiceId> 
+                    <answer>U2</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005094</questionId> 
+                    <choiceId>2</choiceId> 
+                    <answer>Dependent</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005095</questionId> 
+                    <choiceId>9</choiceId> 
+                    <answer>NEEDED</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005097</questionId> 
+                    <choiceId>1</choiceId> 
+                    <answer>Yes</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005098</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>MS Office Suite</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005098</questionId> 
+                    <choiceId>5</choiceId> 
+                    <answer>Video recorder</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005098</questionId> 
+                    <choiceId>6</choiceId> 
+                    <answer>Web chat forums</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005098</questionId> 
+                    <choiceId>7</choiceId> 
+                    <answer>Webcam</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005147</questionId> 
+                    <choiceId>3</choiceId> 
+                    <answer>A2</answer> 
+                    <score>0</score> 
+                </response> 
+                <response> 
+                    <questionId>500005148</questionId> 
+                    <choiceId>69</choiceId> 
+                    <answer>T1</answer> 
+                    <score>0</score> 
+                </response> 
+            </responses> 
+        </responsesCategory> 
+    </responsesList> 
+    <applicationList> 
+        <application> 
+            <gradeId></gradeId> 
+            <createDate></createDate> 
+            <updateDate></updateDate> 
+            <isApplicationExpired>N</isApplicationExpired> 
+            <isApplicationWithdrawn>N</isApplicationWithdrawn> 
+            <selectDate /> 
+            <hireDate /> 
+            <eodDate /> 
+            <status>BQ</status> 
+            <statusDesc>Best Qualified</statusDesc> 
+            <systemStatusCode>BEST QUALIFIED</systemStatusCode> 
+            <ineligibleReason /> 
+            <score>0.0</score> 
+            <totalScore>0</totalScore> 
+            <phases> 
+                <phase> 
+                    <phaseId>707</phaseId> 
+                    <gradeId>04</gradeId> 
+                    <phaseType>0</phaseType> 
+                    <phaseTypeDesc>REQUIRED VACANCY QUESTIONS</phaseTypeDesc> 
+                    <phaseImported>N</phaseImported> 
+                    <phaseMaxScore>100.0</phaseMaxScore> 
+                    <phaseMinScore>70</phaseMinScore> 
+                    <phaseDesc /> 
+                    <phaseOrder>1</phaseOrder> 
+                    <phaseScore>0.0</phaseScore> 
+                    <phaseDate>2010-11-16T00:00:00-05:00</phaseDate> 
+                    <passFailValue>SCORED</passFailValue> 
+                </phase> 
+            </phases> 
+            <responsesList /> 
+        </application> 
+    </applicationList> 
+    <documentList> 
+        <document> 
+            <vacancyDocumentId>10</vacancyDocumentId> 
+            <registeredDocumentId>3301126</registeredDocumentId> 
+            <receivedDocumentId>272214</receivedDocumentId> 
+            <type>APPLICATION</type> 
+            <source>UPLOAD</source> 
+            <version>1</version> 
+            <description>NEEDED</description> 
+            <createDate></createDate> 
+            <updateDate></updateDate> 
+        </document> 
+    </documentList> 
+</applicant>
