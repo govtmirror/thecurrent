@@ -15,7 +15,7 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
 
         require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
-        $groups = TC_Utility::initializeGroups();
+        $groups = TC_Utility::initializeGroups(true);
         $universalGroupID = $groups[ValidAccessGroupTypes::EVERYONE]->get_keyValue();
         $universalAdminGroupID = $groups[ValidAccessGroupTypes::GLOBAL_ADMIN]->get_keyValue();
 
@@ -39,7 +39,7 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
         $userSet = $users->produceSetFromPropertyMatches(false);
 
         foreach ($userSet as $key => $value) {
-            TC_Utility::forceInitializeNewUser($value->get_keyValue());
+            TC_Utility::forceInitializeNewUser($value->get_keyValue(), true);
         }
 
 
@@ -63,6 +63,7 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
         }
 
 
+//
 
         // $containersDV->generateSQL(array(),
         //                             array($containersDV->encodeColumnForSQL($persistables[$friendlies['METADATA']], 'data') =>

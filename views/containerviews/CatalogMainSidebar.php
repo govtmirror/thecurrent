@@ -39,7 +39,9 @@
 
                     render(WIDGET_VIEW_PATH,
                             'TC_CatalogSideBarNewest.php',
-                            array('entity_read_set' => $CatalogMainSidebar_entity_read_set, 'entity_unsub_set' => $CatalogMainSidebar_entity_unsub_set)
+                            array('entity_read_set' => $CatalogMainSidebar_entity_read_set,
+                                'entity_unsub_set' => $CatalogMainSidebar_entity_unsub_set,
+                                'entity_update_set' => $CatalogMainSidebar_entity_update_set)
                     );
             ?>
         </div>

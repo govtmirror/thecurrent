@@ -12,7 +12,7 @@
  */
 class TC_SB_TheCurrentBuzzWidget extends TC_SB_SidebarWidget{
     public function __construct() {        
-        parent::__construct('The Current Buzz', '$iconURL', 'TC_GenericRSSSource', 6, array('link'=>'http://cas.state.gov/thecurrentbuzz/feed/'),'JSServerDiverted_CAS');
+        parent::__construct('The Current Buzz', '$iconURL', 'TC_GenericRSSSource', 6, array('link'=>'http://wordpress.state.gov/leadingknowledge/category/the-current/feed/'),'JSServerDiverted_CAS');
     }
 }
 

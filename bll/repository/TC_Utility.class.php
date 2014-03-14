@@ -112,6 +112,30 @@ class TC_Utility {
 
     }
 
+        public static function getPublishedPageIdsForCatalog($params = array()){
+
+                // $user_id = array_key_exists('user_id', $params) ? $params['user_id'] : null;
+                // $entity_id = array_key_exists('entity_id', $params) ? $params['entity_id'] : null;
+       //   $tag_ids = array_key_exists('tag_ids', $params) ? $params['tag_ids'] : null;
+       //   $pageNum = array_key_exists('pageNum', $params) ? $params['pageNum'] : null;
+       //   $isPaged = array_key_exists('isPaged', $params) ? $params['isPaged'] : null;
+       //   $searchTerm = array_key_exists('searchTerm', $params) ? $params['searchTerm'] : null;
+       //   $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : null;
+       //   $accessprofile = array_key_exists('accessprofile', $params) ? $params['accessprofile'] : null;
+
+            $strat = new TC_RepositoryCatalogPageStrategy();
+            $getPar = new THOR_GetParameterCapsule(array(),
+                                                $params,
+                                                array(),
+                                                array());
+            $repo = new Repository($strat);
+            $returnMe = $repo->getIDs($getPar);
+            // var_dump($returnMe);
+            return $returnMe;
+
+
+        }
+
 
 		public static function getCatalogPageCount($params = array()){
 							// $user_id = array_key_exists('user_id', $params) ? $params['user_id'] : null;
@@ -346,11 +370,11 @@ class TC_Utility {
     }
 
 
-    public static function verifyAndGetGlobalGroup($user_id = null)
+    public static function verifyAndGetGlobalGroup($user_id = null, $forceAccessCheck = false)
     {
-        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::EVERYONE, $user_id);
+        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::EVERYONE, $user_id, $forceAccessCheck);
         $accessgroup = $litmus[0];
-        if($litmus[1] === 1)
+        if($litmus[1] === 1 || $forceAccessCheck)
         {
 
             self::initializeNewUser(SYSTEM_USER_ID);
@@ -375,11 +399,11 @@ class TC_Utility {
         return $accessgroup;
     }
 
-    public static function verifyAndGetGlobalAdminGroup($user_id = null)
+    public static function verifyAndGetGlobalAdminGroup($user_id = null, $forceAccessCheck = false)
     {
-        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::GLOBAL_ADMIN, $user_id);
+        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::GLOBAL_ADMIN, $user_id, $forceAccessCheck);
         $accessgroup = $litmus[0];
-        if($litmus[1] === 1)
+        if($litmus[1] === 1 || $forceAccessCheck)
         {
 
             self::initializeNewUser(DEFAULT_GLOBAL_ADMIN);
@@ -494,11 +518,11 @@ class TC_Utility {
     }
     */
 
-    public static function verifyAndGetSystemGroup()
+    public static function verifyAndGetSystemGroup($forceAccessCheck = false)
     {
-        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::NOBODY);
+        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::NOBODY, null, $forceAccessCheck);
         $accessgroup = $litmus[0];
-        if($litmus[1] === 1)
+        if($litmus[1] === 1 || $forceAccessCheck)
         {
             self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::VOID_VOID,
                                                         ValidAccessTypes::VOID,
@@ -513,7 +537,7 @@ class TC_Utility {
         //return self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::NOBODY);
     }
 
-    public static function verifyAndGetVersionedGroupForEntity($entity_id)
+    public static function verifyAndGetVersionedGroupForEntity($entity_id, $forceAccessCheck = false)
     {
 
     		$uac = new THOR_UserAccessDatabaseManager();
@@ -524,11 +548,17 @@ class TC_Utility {
 
     		//$returnMe = array();
     		$accessgroups = self::getGroupsOfType($accessgrouptype_id, null, $entity_id);
-    		if(count($accessgroups) === 0)
+    		if(count($accessgroups) === 0 || $forceAccessCheck)
     		{
     		    //self::verifyUser($user_id);
-    		    $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
-
+    		    if(count($accessgroups) === 0)
+                {
+                    $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
+                }
+                else
+                {
+                    $accessgroup = array_pop($accessgroups);
+                }
     		    self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::VOID_VOID,
     		                                                ValidAccessTypes::VOID,
     		                                                ValidAccessContexts::VOID,
@@ -549,7 +579,7 @@ class TC_Utility {
 
     }
 
-    public static function preDataForGroups($user_id, $entity_id, $accessgrouptype, $title = null )
+    public static function preDataForGroups($user_id, $entity_id, $accessgrouptype, $title = null /*, $forceAccessCheck = false*/ )
     {
     	$uac = new THOR_UserAccessDatabaseManager();
     	$title = $title ? $title : $accessgrouptype;
@@ -569,9 +599,10 @@ class TC_Utility {
     }
 
     public static function getVersionedPublisherGroupForUserAndEntity(
-    																																		$user_id,
-    																																		$entity_id,
-    																																		$predata = null)
+																	$user_id,
+																	$entity_id,
+																	$predata = null /*,
+                                                                    $forceAccessCheck = false*/ )
     {
 
 	  		$predata = $predata ? $predata : self::preDataForGroups($user_id, $entity_id, ValidAccessGroupTypes::VERSIONED_PUBLISHER );
@@ -591,10 +622,11 @@ class TC_Utility {
     }
 
 
+
     public static function createVersionedPublisherGroupForUserAndEntity(
-    																																		$user_id,
-    																																		$entity_id,
-    																																		$predata = null)
+    																		$user_id,
+    																		$entity_id,
+    																		$predata = null)
     {
     		$predata = $predata ? $predata : self::preDataForGroups($user_id, $entity_id, ValidAccessGroupTypes::VERSIONED_PUBLISHER );
 		    $accessgroup = $predata['uac']->createAccessGroup($predata['title'], $predata['accessgrouptype_id']);
@@ -695,11 +727,11 @@ class TC_Utility {
 
 
 
-    public static function verifyAndGetVersionedMostRecentGroup($user_id = null)
+    public static function verifyAndGetVersionedMostRecentGroup($user_id = null, $forceAccessCheck = false)
     {
-        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::VERSIONED_MOSTRECENT, $user_id);
+        $litmus = self::verifyAndGetUniqueGroup(ValidAccessGroupTypes::VERSIONED_MOSTRECENT, $user_id, $forceAccessCheck);
         $accessgroup = $litmus[0];
-        if($litmus[1] === 1)
+        if($litmus[1] === 1 || $forceAccessCheck)
         {
             self::initializeNewUser(SYSTEM_USER_ID);
             self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::CATALOG_READ,
@@ -714,7 +746,7 @@ class TC_Utility {
         return $accessgroup;
     }
 
-    public static function verifyAndGetUniqueGroup($accessgrouptype, $user_id = null)
+    public static function verifyAndGetUniqueGroup($accessgrouptype, $user_id = null, $forceAccessCheck = false)
     {
 
         if(
@@ -769,7 +801,7 @@ class TC_Utility {
     }
 
 
-    public static function verifyAndGetPersonalGroup($user_id)
+    public static function verifyAndGetPersonalGroup($user_id, $forceAccessCheck = false)
     {
         $uac = new THOR_UserAccessDatabaseManager();
         $title = ValidAccessGroupTypes::PERSONAL;
@@ -779,11 +811,17 @@ class TC_Utility {
 
         //$returnMe = array();
         $accessgroups = self::getGroupsOfType($accessgrouptype_id, $user_id);
-        if(count($accessgroups) === 0)
+        if(count($accessgroups) === 0 || $forceAccessCheck)
         {
             //self::verifyUser($user_id);
-            $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
-
+            if(count($accessgroups) === 0)
+            {
+                $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
+            }
+            else
+            {
+                $accessgroup = array_pop($accessgroups);
+            }
             self::setAccessForGroup(new TC_DefaultAccessProfile(), $accessgroup->get_keyValue());
             self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::DASHBOARD_REORDER,
                                                         ValidAccessTypes::REORDER,
@@ -846,7 +884,7 @@ class TC_Utility {
 
 
 
-    public static function verifyAndGetPersonalPublishedGroup($user_id)
+    public static function verifyAndGetPersonalPublishedGroup($user_id, $forceAccessCheck = false)
     {
     	$uac = new THOR_UserAccessDatabaseManager();
     	$title = ValidAccessGroupTypes::PERSONAL_PUBLISHED;
@@ -856,11 +894,15 @@ class TC_Utility {
 
     	//$returnMe = array();
     	$accessgroups = self::getGroupsOfType($accessgrouptype_id, $user_id);
-    	if(count($accessgroups) === 0)
+    	if(count($accessgroups) === 0 || $forceAccessCheck)
     	{
     	    //self::verifyUser($user_id);
-    	    $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
-
+    	    if(count($accessgroups) === 0){
+                $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
+            }
+            else{
+                $accessgroup = array_pop($accessgroups);
+            }
 
     	    self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::VOID_VOID,
     	                                                ValidAccessTypes::VOID,
@@ -886,7 +928,7 @@ class TC_Utility {
 
 
 
-    public static function verifyAndGetVersionedVersionReadGroup($user_id)
+    public static function verifyAndGetVersionedVersionReadGroup($user_id, $forceAccessCheck = false)
     {
     	$uac = new THOR_UserAccessDatabaseManager();
     	$title = ValidAccessGroupTypes::VERSIONED_VERSIONREAD;
@@ -896,11 +938,17 @@ class TC_Utility {
 
     	//$returnMe = array();
     	$accessgroups = self::getGroupsOfType($accessgrouptype_id, $user_id);
-    	if(count($accessgroups) === 0)
+    	if(count($accessgroups) === 0 || $forceAccessCheck)
     	{
     	    //self::verifyUser($user_id);
-    	    $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
-
+    	    if(count($accessgroups) === 0)
+            {
+                $accessgroup = $uac->createAccessGroup($title, $accessgrouptype_id);
+            }
+            else
+            {
+                $accessgroup = array_pop($accessgroups);
+            }
     	    self::setAccessForGroup(new TC_DefaultAccessProfile(), $accessgroup->get_keyValue());
     	    self::setAccessForGroup(new AccessProfile(ValidAccessProfiles::DASHBOARD_READ,
     	                                                ValidAccessTypes::VIEW,
@@ -1076,15 +1124,47 @@ class TC_Utility {
     		}
     }
 
+    public static function getTermTaxCount($termtaxonomy_id){
+        $tte = new THOR_ENTITIES_TERMS_TAXONOMIES_DataBoundSimplePersistable();
+        $tte->termtaxonomy_id = $termtaxonomy_id;
+        $tte->is_active = 1;
+        $tteSet = $tte->produceSetFromPropertyMatches(false, array('created_date','last_edited','owner_id','entity_id'));
+
+        $accessprofileRead = new AccessProfile(ValidAccessProfiles::CATALOG_READ, ValidAccessTypes::VIEW, ValidAccessContexts::CATALOG, ValidAccessLevels::BASIC_ACCESS);
+        $containerIdsMostRecentPublished = self::getPublishedPageIdsForCatalog(array('accessprofile' => $accessprofileRead));
+
+
+        foreach($tteSet as $key => $item)
+        {
+            $entityIsPublished = false;
+            if(in_array($item->entity_id, $containerIdsMostRecentPublished))
+            {
+                $entityIsPublished = true;
+            }
+            //if(getEntityFromRepoPool($item->entity_id, $containerIdsMostRecentPublished, 'get_entity_id'))
+            if(!$entityIsPublished)
+            {
+                unset($tteSet[$key]);
+            }
+        }
+
+
+
+        return count($tteSet);
+    }
+
     public static function getTagCount($tag_id){
     	$termtaxonomy_id = self::verifyAndGetTag($tag_id)->get_keyValue();
+        return self::getTermTaxCount($termtaxonomy_id);
 
-    	$tte = new THOR_ENTITIES_TERMS_TAXONOMIES_DataBoundSimplePersistable();
-    	$tte->termtaxonomy_id = $termtaxonomy_id;
-    	$tte->is_active = 1;
-    	$tteSet = $tte->produceSetFromPropertyMatches(false, array('created_date','last_edited','owner_id','entity_id'));
+    	// $tte = new THOR_ENTITIES_TERMS_TAXONOMIES_DataBoundSimplePersistable();
+    	// $tte->termtaxonomy_id = $termtaxonomy_id;
+    	// $tte->is_active = 1;
+    	// $tteSet = $tte->produceSetFromPropertyMatches(false, array('created_date','last_edited','owner_id','entity_id'));
 
-    	return count($tteSet);
+    	// return count($tteSet);
+
+
     	// $returnMe = array();
 
     	// foreach($tteSet as $key => $value)
@@ -1108,6 +1188,99 @@ class TC_Utility {
     		$returnMe[$tag->id] = self::getTagCount($tag->id);
     	}
     	return $returnMe;
+    }
+
+
+    public static function getUsedTagCount($limit){
+
+        $accessprofileRead = new AccessProfile(ValidAccessProfiles::CATALOG_READ, ValidAccessTypes::VIEW, ValidAccessContexts::CATALOG, ValidAccessLevels::BASIC_ACCESS);
+        $containerIdsMostRecentPublished = self::getPublishedPageIdsForCatalog(array('accessprofile' => $accessprofileRead));
+        // logError(var_export($containerIdsMostRecentPublished, true));
+        $tte = new THOR_ENTITIES_TERMS_TAXONOMIES_DataBoundSimplePersistable();
+        $tte->is_active = 1;
+        $tteSet = $tte->produceSetFromPropertyMatches(false, array('created_date','last_edited','owner_id','entity_id','termtaxonomy_id'));
+        // return array('4' => count($tteSet));
+        // $addedKeys = array();
+        $returnMe = array();
+        $usedTermTaxIds = array();
+
+        shuffle($tteSet);
+
+        // foreach($tteSet as $item){
+        //     $returnMe[] = $item->termtaxonomy_id;
+        // }
+        // logError($returnMe);
+        // return $returnMe;
+
+        foreach($tteSet as $item){
+            // logError($item->termtaxonomy_id);
+            // logError($item->entity_id);
+            // logError($item->termtaxonomy_id . ' - ' . $item->entity_id);
+
+            if(count($returnMe) >= $limit /* min(15, count($tteSet)) */ ){
+                break;
+            }
+            if(in_array($item->termtaxonomy_id, $usedTermTaxIds) || !in_array($item->entity_id, $containerIdsMostRecentPublished)){
+                continue;
+            }
+            // logError($item->termtaxonomy_id . ' - ' . $item->entity_id);
+
+            // $returnMe[] = $item;
+            $usedTermTaxIds[] = $item->termtaxonomy_id;
+            $count = self::getTermTaxCount($item->termtaxonomy_id);
+            // logError($count);
+            $termtax = new THOR_TERMS_TAXONOMIES_DataBoundSimplePersistable();
+            // $termtax->term_id = $term_id;
+
+            $termtax->populateFromKey($item->termtaxonomy_id);
+            // $termtax->taxonomy_id = self::verifyAndGetTheTagsTaxonomy()->get_keyValue();
+            // $termtax->is_active = 1;
+            // $tagSet = $termtax->produceSetFromPropertyMatches(true, array('term_id'));
+            // logError(var_export($tagSet, true));
+            // $tag = array_pop($tagSet);
+
+            // logError(var_export($tag->get_keyValue(), true));
+
+            if($termtax)
+            {
+                // $tagId = $termtax->get_keyValue();
+                $tagId = $termtax->term_id;
+                $returnMe[$tagId] = $count;//array('count' => $count, 'text' => $item);
+            }
+
+        }
+
+        return $returnMe;
+
+
+        // while(count($returnMe) < min(15, count($tteSet)) )
+        // {
+
+        // }
+
+
+        // $randomKeys = array_rand($tteSet, min(15, count($tteSet)));
+        // $randomKeys
+        // var randomList = [];
+                            // var randomResults = [];
+                            // while(randomList.length < 15)
+                            // {
+                            //     var random = catalogSearchTermsArray[Math.floor(Math.random() * catalogSearchTermsArray.length)];
+                            //     if(randomList.indexOf(random.id) == -1)
+                            //     {
+                            //         randomResults.push(random);
+                            //         randomList.push(random.id);
+                            //     }
+                            // }
+
+
+        // while(count($returnMe) < min(15, count($tteSet)) )
+        // {
+        //     $randomKey = array_pop(array_rand($tteSet, 1))
+        //     $random = $tteSet[array_rand($tteSet, 1)];
+        // }
+
+
     }
 
     // public static function updateTagsByJSONData($jsonTagString, $user_id, $entity_id)
@@ -1785,15 +1958,15 @@ public static function getFollowers($entity_id){
     }
 
 
-    public function initializeGroups()
+    public function initializeGroups($forceAccessCheck = false)
     {
 
         $returnMe = array();
 
-        $global = self::verifyAndGetGlobalGroup();
-        $globalAdmin = self::verifyAndGetGlobalAdminGroup();
-        $versionedMostRecent = self::verifyAndGetVersionedMostRecentGroup();
-        $nobody = self::verifyAndGetSystemGroup();
+        $global = self::verifyAndGetGlobalGroup(null, $forceAccessCheck);
+        $globalAdmin = self::verifyAndGetGlobalAdminGroup(null, $forceAccessCheck);
+        $versionedMostRecent = self::verifyAndGetVersionedMostRecentGroup(null, $forceAccessCheck);
+        $nobody = self::verifyAndGetSystemGroup($forceAccessCheck);
 
         $returnMe[ValidAccessGroupTypes::NOBODY] = $nobody;
         $returnMe[ValidAccessGroupTypes::EVERYONE] = $global;
@@ -1996,15 +2169,15 @@ public static function getFollowers($entity_id){
         return $returnMe;
     }
 
-    public static function forceInitializeNewUser($user_id)
+    public static function forceInitializeNewUser($user_id, $forceAccessCheck = false)
     {
         if($user_id !== SYSTEM_USER_ID)
         {
-            self::verifyAndGetGlobalGroup($user_id);
-            self::verifyAndGetVersionedMostRecentGroup($user_id);
-            self::verifyAndGetVersionedVersionReadGroup($user_id);
-            self::verifyAndGetPersonalPublishedGroup($user_id);
-            $accessgroup = self::verifyAndGetPersonalGroup($user_id);
+            self::verifyAndGetGlobalGroup($user_id, $forceAccessCheck);
+            self::verifyAndGetVersionedMostRecentGroup($user_id, $forceAccessCheck);
+            self::verifyAndGetVersionedVersionReadGroup($user_id, $forceAccessCheck);
+            self::verifyAndGetPersonalPublishedGroup($user_id, $forceAccessCheck);
+            $accessgroup = self::verifyAndGetPersonalGroup($user_id, $forceAccessCheck);
             return $accessgroup;
         }
         return false;

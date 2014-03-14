@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-</div>
+<input id="current-page-scene" name="current-page-scene" type="hidden" value="<?php echo ValidAccessContexts::VOID; ?>" />
 <div id="footer">
 <p style="background:#eee;color:#666;line-height:2em;">The Current dynamically retrieves data from sources that users select. Content from the Internet can be unpredictable and objectionable material may unintentionally be displayed. eDiplomacy does not filter or restrict sources and it is up to users to monitor the content on their pages.</p>
 <p><a href="/terms.php">Terms of Use</a> | <a href="mailto:edipcurrentadmin@state.gov">Contact Us</a></p>
@@ -14,7 +14,7 @@
 </div>
 
 
-<!-- Piwik --> 
+<!-- Piwik -->
 <script type="text/javascript">
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://edipanalytics.state.gov/" : "http://edipanalytics.state.gov/");
 document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));

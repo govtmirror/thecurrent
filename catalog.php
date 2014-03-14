@@ -416,7 +416,7 @@ $dataArr = TC_Utility::getCatalogPagesDataArray();
     <input id="catalog-current-tag-selections" name="catalog-current-tag-selections" type="hidden" value="" />
     <input id="catalog-current-search-term" name="catalog-current-search-term" type="hidden" value="" />
     <input id="catalog-current-order-by" name="catalog-current-order-by" type="hidden" value="<?php echo ValidCatalogOrderTypes::RECENCY;?>" />
-
+  </div>
 <script type="text/javascript">
 
 $.fn.tagcloud.defaults = {
@@ -428,13 +428,13 @@ $.fn.tagcloud.defaults = {
 
 
 $(document).ready(function(){
-
-
+		$('#current-page-scene').val('<?php echo ValidAccessContexts::CATALOG ; ?>');
     var catalogSearchTermsArray = new Array(
         {id:0,text:'* Loading Tags *'}
     );
 
-
+    var publishDialogTagTerms = [];
+    var publishDialogTagIds = [];
 
 
     $('#catalog-search-tags').select2({
@@ -463,44 +463,62 @@ $(document).ready(function(){
                 catalogSearchTermsArray = _.map(data.tags, function(term, key){
                     return { id: data.ids[key], text: term};
                 });
+                publishDialogTagTerms = data.tags;
+                publishDialogTagIds = data.ids;
                 if($('#catalog-tagCloud').is(':empty'))
                 {
-                    // $('.tagCloud').html('');
-                    var randomList = [];
-                    var randomResults = [];
-                    while(randomList.length < 15)
-                    {
-                        var random = catalogSearchTermsArray[Math.floor(Math.random() * catalogSearchTermsArray.length)];
-                        // catalogSearchTermsArray[Math.floor(Math.random() * catalogSearchTermsArray.length)]
-                        if(randomList.indexOf(random.id) == -1)
-                        {
-                            randomResults.push(random);
-                            randomList.push(random.id);
-                        }
-                    }
-                    // console.log(catalogSearchTermsArray);
-                    // randomResults.push(catalogSearchTermsArray[31]);
-                    var tagIds = JSON.stringify(randomResults);
-                    // getTagCount
-                    $.ajax({
-                        url: '../../bll/ajaxhandlers/getTagCount.php',
-                        data: {
-                            tag_ids: tagIds
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                        },
-                        success: function(data2){
-                            var resultsArr = JSON.parse(data2);
-                            _.each(randomResults, function(entry){
-                                $('.tagCloud').append('<a rel="'+ resultsArr[entry.id] +'" href="#" class="catalogTag" data-tagid="' + entry.id + '">'+ entry.text +'</a>');
-                            });
-                            $('.tagCloud a').tagcloud();
-                        }
-                    });
+
+                	$.ajax({
+                      url: '../../bll/ajaxhandlers/getTagCount.php',
+                      data: {
+                          // tag_ids: tagIds
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                      },
+                      success: function(data2){
+                      	// console.log(data2);
+                          var resultsArr = JSON.parse(data2);
+                          // console.log(resultsArr);
+                          _.each(resultsArr, function(count, id){
+                          	// var tagTerm;
+                          	// $tagKey = array_search($tagId, $TC_CatalogPageWidget_tags->ids);
+                          	// $tagTerm = $TC_CatalogPageWidget_tags->tags[$tagKey];
+                              $('.tagCloud').append('<a rel="'+ count +'" href="#" class="catalogTag" data-tagid="' + id + '">'+ publishDialogTagTerms[getIndexIfObjWithAttr(catalogSearchTermsArray, 'id', id)] +'</a>');
+                          });
+                          $('.tagCloud a').tagcloud();
+                      }
+                  });
 
 
+                    // var randomList = [];
+                    // var randomResults = [];
+                    // while(randomList.length < 15)
+                    // {
+                    //     var random = catalogSearchTermsArray[Math.floor(Math.random() * catalogSearchTermsArray.length)];
+                    //     if(randomList.indexOf(random.id) == -1)
+                    //     {
+                    //         randomResults.push(random);
+                    //         randomList.push(random.id);
+                    //     }
+                    // }
+                    // var tagIds = JSON.stringify(randomResults);
+                    // $.ajax({
+                    //     url: '../../bll/ajaxhandlers/getTagCount.php',
+                    //     data: {
+                    //         tag_ids: tagIds
+                    //     },
+                    //     error: function(jqXHR, textStatus, errorThrown) {
+                    //     },
+                    //     success: function(data2){
+                    //         var resultsArr = JSON.parse(data2);
+                    //         console.log(resultsArr);
+                    //         _.each(randomResults, function(entry){
+                    //             $('.tagCloud').append('<a rel="'+ resultsArr[entry.id] +'" href="#" class="catalogTag" data-tagid="' + entry.id + '">'+ entry.text +'</a>');
+                    //         });
+                    //         $('.tagCloud a').tagcloud();
+                    //     }
+                    // });
                 }
-
             }
         });
     }
@@ -717,13 +735,13 @@ $(document).ready(function(){
             }
     );
 
-    $('.previewPageButton').live('click', function(){
-        var entity_id = $(this).data("entityid");
-        var subscribed = $(this).data('subscribed');
-        $("#previewTabDialogBox").data('entity_id', entity_id);
-        $("#previewTabDialogBox").data('subscribed', subscribed);
-        $("#previewTabDialogBox").dialog('open');
-    });
+    // $('.previewPageButton').live('click', function(){
+    //     var entity_id = $(this).data("entityid");
+    //     var subscribed = $(this).data('subscribed');
+    //     $("#previewTabDialogBox").data('entity_id', entity_id);
+    //     $("#previewTabDialogBox").data('subscribed', subscribed);
+    //     $("#previewTabDialogBox").dialog('open');
+    // });
 
     $('.subscribePageButton').live('click', function(){
         var entity_id = $(this).data("entityid");

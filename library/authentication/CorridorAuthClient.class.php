@@ -18,7 +18,7 @@ class CorridorAuthClient {
 //require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'bootstrap.php');
         if (STAGING_ENVIRONMENT == true)
         {
-            return 123421;
+            return 32;
         }
         else
         {

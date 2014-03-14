@@ -17,8 +17,8 @@ if(isset($tag_ids))
 		$tag_ids = json_decode($tag_ids);
 }
 
-
-$countArr = TC_Utility::getTagCountArray($tag_ids);
+// $countArr = TC_Utility::getTagCountArray($tag_ids);
+$countArr = TC_Utility::getUsedTagCount(15);
 
 echo json_encode($countArr);
 

@@ -598,7 +598,42 @@ function addUpdateTabInfo(title, id)
     // });
 
 
+    function reloadDashboardAndNav(entity_ID){
+        // var containerEntityID = "<?php echo $updateId ; ?>";
+        var userID = '<?php echo $user_ID;?>';
+        // alert(entity_ID);
+            $.ajax({
+        //document.location.hostname+
+                url: '../../bll/ajaxhandlers/loadDashboardContentAndNav.php',
+                data: {
+                entity_ID: entity_ID,
+                user_ID: userID
+                },
+                timeout: 0,
+                dataType : 'html',
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('ul#navigation > li > a.current').click();
+                },
+                success: function(data){
 
+                  $('#navdiv').html($(data).filter("#ajaxRenderNav").html());
+                  $('#main').html($(data).filter("#ajaxRenderContent").html());
+
+                  $(data).filter('script').each(function(){
+                      $.globalEval(this.text || this.textContent || this.innerHTML || '');
+                  });
+                }
+            });
+    }
+
+
+    $('.previewPageButton').live('click', function(){
+        var entity_id = $(this).data("entityid");
+        var subscribed = $(this).data('subscribed');
+        $("#previewTabDialogBox").data('entity_id', entity_id);
+        $("#previewTabDialogBox").data('subscribed', subscribed);
+        $("#previewTabDialogBox").dialog('open');
+    });
 
 
             $('.SelectedSourceTitle').livequery(function(){

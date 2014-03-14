@@ -25,56 +25,12 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
              ?>
 <script type="text/javascript">
     $(document).ready(function(){
+      $('#current-page-scene').val('<?php echo ValidAccessContexts::DASHBOARD ; ?>');
 
        startStopRefreshTimer(1);
 
 
-       function reloadDashboardAndNav(entity_ID){
-           // var containerEntityID = "<?php echo $updateId ; ?>";
-           var userID = '<?php echo $user_ID;?>';
-           // alert(entity_ID);
-               $.ajax({
-           //document.location.hostname+
-                   url: 'bll/ajaxhandlers/loadDashboardContentAndNav.php',
-                   data: {
-                   entity_ID: entity_ID,
-                   user_ID: userID
-                   },
-                   timeout: 0,
-                   dataType : 'html',
-                   error: function(jqXHR, textStatus, errorThrown) {
-                       $('ul#navigation > li > a.current').click();
-                   },
-                   success: function(data){
 
-                   //alert($(data).filter("#ajaxRenderNav").html());
-                   $('#navdiv').html($(data).filter("#ajaxRenderNav").html());
-                   $('#main').html($(data).filter("#ajaxRenderContent").html());
-
-
-
-
-                   $(data).filter('script').each(function(){
-                       $.globalEval(this.text || this.textContent || this.innerHTML || '');
-                   });
-
-
-                   // var currentSelected = $('#navdiv').find('.current').html();
-                   // if(typeof currentSelected  == "undefined" || currentSelected  == null)
-                   //         {
-                   //             //alert('hi');
-                   //             currentSelected = 'No Page Selected';
-                   //         }
-                   // $('.SelectedSourceTitle').html(currentSelected);
-
-
-
-
-
-                   }
-
-               });
-       }
 
 
        $('#previewTabDialogBox').dialog(
@@ -93,7 +49,7 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
                                        text: "Update",
                                        click: function(){
                                            $.ajax({
-                                               url: 'bll/ajaxhandlers/subscribeToDashboard.php',
+                                               url: '../../bll/ajaxhandlers/subscribeToDashboard.php',
                                                contentType: "text/plain",
                                                dataType : 'text',
                                                data: {
@@ -158,19 +114,20 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
                }
        );
 
-       $('.previewPageButton').live('click', function(){
-           var entity_id = $(this).data("entityid");
-           var subscribed = $(this).data('subscribed');
-           $("#previewTabDialogBox").data('entity_id', entity_id);
-           $("#previewTabDialogBox").data('subscribed', subscribed);
-           $("#previewTabDialogBox").dialog('open');
-       });
+       // $('.previewPageButton').live('click', function(){
+       //     var entity_id = $(this).data("entityid");
+       //     var subscribed = $(this).data('subscribed');
+       //     $("#previewTabDialogBox").data('entity_id', entity_id);
+       //     $("#previewTabDialogBox").data('subscribed', subscribed);
+       //     $("#previewTabDialogBox").dialog('open');
+       // });
 
        $('.subscribePageButton').live('click', function(){
            var entity_id = $(this).data("entityid");
            var isActive = $(this).data('subscribed');
+           var zone = $('#current-page-scene').val();
            $.ajax({
-               url: 'bll/ajaxhandlers/subscribeToDashboard.php',
+               url: '../../bll/ajaxhandlers/subscribeToDashboard.php',
                contentType: "text/plain",
                dataType : 'text',
                data: {
@@ -183,6 +140,18 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
                    if(isNaN(newContId))
                    {
                        alertUserPubMax();
+                   }
+                   if(zone == '<?php echo ValidAccessContexts::DASHBOARD ; ?>')
+                   {
+
+                   }
+                   else if(zone == '<?php echo ValidAccessContexts::CATALOG ; ?>')
+                   {
+
+                   }
+                   else
+                   {
+
                    }
                    reloadDashboardAndNav(entity_id);
                }
@@ -205,7 +174,7 @@ $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '
 
 
 
-
+       </div>
 
         <?php
         require_once (ROOT . DS . 'footer.php');

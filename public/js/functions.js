@@ -284,6 +284,15 @@ arr2.clean('');
     return commaDelineateArray(arr2);
 }
 
+function getIndexIfObjWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i++) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 Array.prototype.clean = function(deleteValue) {
   for (var i = 0; i < this.length; i++) {
