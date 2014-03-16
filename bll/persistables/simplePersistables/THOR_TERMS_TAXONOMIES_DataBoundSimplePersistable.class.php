@@ -8,7 +8,7 @@
 /**
  * Description of THOR_TAXONOMIES_TAXONOMYGROUPS_DataBoundSimplePersistable
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class THOR_TERMS_TAXONOMIES_DataBoundSimplePersistable extends THOR_DataBoundSimplePersistable{
 

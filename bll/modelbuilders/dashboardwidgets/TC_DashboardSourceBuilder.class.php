@@ -8,19 +8,19 @@
 /**
  * Description of DashboardWidgetBuilder
  *
- * @author optimus
+ * @author Dan Kottke
  */
 abstract class TC_DashboardSourceBuilder extends ViewModelBuilder {
- 
+
     public function __construct($modelType, $id, $repo = null, $args = null) {
         $strat = new TC_RepositoryDashboardSourceStrategy();
         parent::__construct($modelType, $strat, $id, $repo, $args);
         unset($strat);
-    }   
-    
-    
-    
-    
+    }
+
+
+
+
 }
 
 ?>

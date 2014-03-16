@@ -8,7 +8,7 @@
 /**
  * Description of DataView
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class DataView {
 

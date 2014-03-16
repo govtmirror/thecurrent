@@ -8,7 +8,7 @@
 /**
  * Description of THOR_DataBoundSimplePersistable
  *
- * @author severus
+ * @author Dan Kottke
  */
 abstract class THOR_DataBoundSimplePersistable extends MySQLDataBoundSimplePersistable{
 

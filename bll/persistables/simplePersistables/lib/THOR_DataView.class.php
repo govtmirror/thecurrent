@@ -8,10 +8,10 @@
 /**
  * Description of THOR_DataView
  *
- * @author severus
+ * @author Dan Kottke
  */
 class THOR_DataView extends DataView{
-    
+
     public function __construct() {
         $ds = MySQLAdapter::getInstance();
         parent::__construct($ds);

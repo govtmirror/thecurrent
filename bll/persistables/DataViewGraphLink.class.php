@@ -8,14 +8,14 @@
 /**
  * Description of DataViewGraphLink
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class DataViewGraphLink {
     //protected $memID1;
     protected $memID;
     protected $keyPairs;
     protected $joinType;
-    
+
     public function __construct($memID, array $keyPairs, $joinType) {
        // $this->memID1 = $memID1;
         $this->memID = $memID;
@@ -23,8 +23,8 @@ class DataViewGraphLink {
         $this->joinType = $joinType;
     }
 
-    
-    
+
+
 
     public function get_memID() {
         return $this->memID;

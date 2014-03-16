@@ -8,7 +8,7 @@
 /**
  * Description of ValueModel
  *
- * @author optimus
+ * @author Dan Kottke
  */
 abstract class DataBoundSimplePersistable extends AnonymousValueModel implements IPersistable {
 

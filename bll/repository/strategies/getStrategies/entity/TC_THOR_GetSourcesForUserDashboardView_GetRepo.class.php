@@ -8,7 +8,7 @@
 /**
  * Description of TC_THOR_GetSourcesForUserDashboardView_GetRepo
  *
- * @author severus
+ * @author Dan Kottke
  */
 class TC_THOR_GetSourcesForUserDashboardView_GetRepo extends GetStrategy{
 

@@ -67,48 +67,6 @@ define('CORRIDOR_WEB_SERVICE_URL','http://corridor.state.gov/rssfeeds/rss.php');
 define('CORRIDOR_GROUP_WEB_SERVICE_URL','http://corridor.state.gov/rssfeeds/generateGroupsList.php');
 
 define('CORRIDOR_TAG_API_URL', '/bll/ajaxhandlers/corridorTagTest.js');
-// define('CORRIDOR_TAG_API_URL', 'http://corridor.state.gov/api/tags/');
 
-//define('YES',dirname(dirname(__FILE__)));
-/*
-define('ROOT_PATH', realpath(dirname(__FILE__).'/../../').'/');
-$projectDir = implode('/', array_intersect(explode('/', $_SERVER["REQUEST_URI"]),explode('/', str_replace('\\','/',ROOT_PATH))));
-if($projectDir[strlen($projectDir)-1] != '/')
-{
-    $projectDir .= '/';
-}
-define('PROJECT_DIR', $projectDir);
-define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST'].PROJECT_DIR);
-*/
-
-
-
-/*
-define('DB_TABLES', serialize(array(
-    "CONTAINERPARAMFIELDS",
-    "CONTAINERPARAMVALUES",
-    "CONTAINERS",
-    "CONTAINERS_FIELDS_VALUES",
-    "CONTAINERTYPES",
-    "REGIONPARAMFIELDS",
-    "REGIONPARAMVALUES",
-    "REGIONS",
-    "REGIONS_FIELDS_VALUES",
-    "REGIONTYPES",
-    "WIDGETPARAMFIELDS",
-    "WIDGETPARAMVALUES",
-    "WIDGETS",
-    "WIDGETS_FIELDS_VALUES",
-    "WIDGETTYPES"
-)));
-
-foreach(unserialize(DB_TABLES) as $table)
-{
-
-    define("$table", '');
-
-}
- *
- */
 
 ?>

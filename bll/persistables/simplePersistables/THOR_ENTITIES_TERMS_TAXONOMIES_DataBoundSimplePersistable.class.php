@@ -8,7 +8,7 @@
 /**
  * Description of THOR_ENTITIES_TAXONOMIES_DataBoundSimplePersistable
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class THOR_ENTITIES_TERMS_TAXONOMIES_DataBoundSimplePersistable extends THOR_DataBoundSimplePersistable{
 

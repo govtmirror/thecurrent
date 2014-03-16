@@ -8,7 +8,7 @@
 /**
  * Description of IRetrievable
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class IRetrievable {
     //put your code here

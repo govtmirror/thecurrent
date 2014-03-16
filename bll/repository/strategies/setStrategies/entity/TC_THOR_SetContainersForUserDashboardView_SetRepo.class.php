@@ -8,7 +8,7 @@
 /**
  * Description of TC_THOR_SetContainersForUserDashboardView_SetRepo
  *
- * @author severus
+ * @author Dan Kottke
  */
 class TC_THOR_SetContainersForUserDashboardView_SetRepo extends SetStrategy{
     protected $container_manager;

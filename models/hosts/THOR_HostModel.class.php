@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by JetBrains PhpStorm.
- * User: optimus
+ * User: Dan Kottke
  * Date: 10/27/12
  * Time: 11:30 AM
  * To change this template use File | Settings | File Templates.

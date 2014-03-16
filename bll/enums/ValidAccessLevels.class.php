@@ -8,11 +8,11 @@
 /**
  * Description of ValidAccessLevels
  *
- * @author optimus
+ * @author Dan Kottke
  */
 class ValidAccessLevels {
-    const NO_ACCESS = 0;    
-    const BASIC_ACCESS = 1;    
+    const NO_ACCESS = 0;
+    const BASIC_ACCESS = 1;
 }
 
 ?>

@@ -8,12 +8,12 @@
 /**
  * Description of SB_AllNewsWidget
  *
- * @author optimus
+ * @author Dan Kottke
  */
 class TC_SB_AllNewsWidget extends TC_SB_SidebarWidget {
-    
+
     public function __construct() {
-        
+
         parent::__construct('All News', '$iconURL', 'TC_GoogleRSSSource', 5, array(),'JSGoogleNews_Default');
     }
 }

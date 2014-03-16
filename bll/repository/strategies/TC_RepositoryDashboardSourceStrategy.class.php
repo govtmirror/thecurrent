@@ -8,7 +8,7 @@
 /**
  * Description of TC_RepositoryDashboardSourceStrategy
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class TC_RepositoryDashboardSourceStrategy extends TC_RepositoryStrategy{
     public function __construct() {

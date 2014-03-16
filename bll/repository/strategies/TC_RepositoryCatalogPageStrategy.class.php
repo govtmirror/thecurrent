@@ -8,7 +8,7 @@
 /**
  * Description of TC_RepositoryCatalogPageStrategy
  *
- * @author Optimus
+ * @author Dan Kottke
  */
 class TC_RepositoryCatalogPageStrategy extends TC_RepositoryStrategy{
 
